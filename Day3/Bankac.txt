@@ -1,0 +1,23 @@
+class BankAC {
+    int balance = 1000;
+
+    void withdraw(int amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrawn: " + amount);
+        } else {
+            System.out.println("Not enough balance");
+        }
+    }
+
+    void cash() {
+        System.out.println("Current balance: " + balance);
+    }
+
+    public static void main(String[] args) {
+        BankAC myAccount = new BankAC();
+        myAccount.cash();
+        myAccount.withdraw(300);
+        myAccount.cash();
+    }
+}

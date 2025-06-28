@@ -1,0 +1,30 @@
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.setDetails("Ananya", 85, 90);
+        s.displayResult();
+    }
+}
+
+class Student {
+    String name;
+    int mark1;
+    int mark2;
+
+    void setDetails(String name, int mark1, int mark2) {
+        this.name = name;
+        this.mark1 = mark1;
+        this.mark2 = mark2;
+    }
+
+    int getTotal() {
+        return mark1 + mark2;
+    }
+
+    void displayResult() {
+        System.out.println("Student Name: " + name);
+        System.out.println("Mark 1: " + mark1);
+        System.out.println("Mark 2: " + mark2);
+        System.out.println("Total Marks: " + getTotal());
+    }
+}

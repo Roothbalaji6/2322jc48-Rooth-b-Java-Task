@@ -1,0 +1,64 @@
+public class Main {
+    public static void main(String[] args) {
+        Library lib = new Library();
+
+        lib.addBook("Java Programming");
+        lib.addBook("Python Basics");
+        lib.addBook("C++ Guide");
+
+        lib.showBooks();
+
+        lib.issueBook("Java Programming");
+        lib.removeBook("Python Basics");
+
+        lib.showBooks();
+    }
+}
+
+class Library {
+    String[] books = new String[100];
+    int count = 0;
+
+    // Method to add a book
+    void addBook(String name) {
+        books[count] = name;
+        count++;
+        System.out.println("Book added: " + name);
+    }
+
+    // Method to remove a book
+    void removeBook(String name) {
+        for (int i = 0; i < count; i++) {
+            if (books[i].equals(name)) {
+                books[i] = books[count - 1];
+                books[count - 1] = null;
+                count--;
+                System.out.println("Book removed: " + name);
+                return;
+            }
+        }
+        System.out.println("Book not found: " + name);
+    }
+
+    // Method to issue a book
+    void issueBook(String name) {
+        for (int i = 0; i < count; i++) {
+            if (books[i].equals(name)) {
+                books[i] = books[count - 1];
+                books[count - 1] = null;
+                count--;
+                System.out.println("Book issued: " + name);
+                return;
+            }
+        }
+        System.out.println("Book not available: " + name);
+    }
+
+    // Method to display all books
+    void showBooks() {
+        System.out.println("Available books:");
+        for (int i = 0; i < count; i++) {
+            System.out.println("- " + books[i]);
+        }
+    }
+}

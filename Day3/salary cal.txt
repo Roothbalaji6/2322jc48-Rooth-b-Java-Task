@@ -1,0 +1,27 @@
+public class Main {
+    public static void main(String[] args) {
+        Employee emp = new Employee();
+        emp.name = "Rahul";
+        emp.age = 28;
+        emp.basic = 20000;
+        emp.hra = 5000;
+        emp.da = 3000;
+
+        System.out.println("Name: " + emp.name);
+        System.out.println("Age: " + emp.age);
+        System.out.println("Total Salary: ₹" + emp.getSalary());
+    }
+}
+
+class Person {
+    String name;
+    int age;
+}
+
+class Employee extends Person {
+    double basic, hra, da;
+
+    double getSalary() {
+        return basic + hra + da;
+    }
+}

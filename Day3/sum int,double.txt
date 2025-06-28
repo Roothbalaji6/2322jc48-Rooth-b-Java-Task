@@ -1,0 +1,21 @@
+public class Main {
+    // Method to add two integers
+    int sum(int a, int b) {
+        return a + b;
+    }
+
+    // Method to add two doubles
+    double sum(double a, double b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        Main obj = new Main();
+
+        int intResult = obj.sum(10, 20);           // Calls sum(int, int)
+        double doubleResult = obj.sum(5.5, 4.5);    // Calls sum(double, double)
+
+        System.out.println("Sum of integers: " + intResult);
+        System.out.println("Sum of doubles: " + doubleResult);
+    }
+}
