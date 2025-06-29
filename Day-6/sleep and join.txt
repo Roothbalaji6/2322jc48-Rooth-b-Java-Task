@@ -1,0 +1,26 @@
+public class ThreadDemo {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(() -> {
+            try {
+                System.out.println("Thread 1 starting...");
+                Thread.sleep(1000); // Sleep for 1 second
+                System.out.println("Thread 1 finished.");
+            } catch (InterruptedException e) {
+                System.out.println("Thread 1 interrupted.");
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            try {
+                System.out.println("Thread 2 waiting for Thread 1...");
+                t1.join(); // Wait for t1 to finish
+                System.out.println("Thread 2 starting after Thread 1.");
+            } catch (InterruptedException e) {
+                System.out.println("Thread 2 interrupted.");
+            }
+        });
+
+        t1.start();
+        t2.start();
+    }
+}

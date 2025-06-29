@@ -1,0 +1,54 @@
+public class TicketBookingApp {
+    public static void main(String[] args) {
+        TicketCounter counter = new TicketCounter();
+
+        UserThread user1 = new UserThread(counter, "Alice", 2);
+        UserThread user2 = new UserThread(counter, "Bob", 2);
+        UserThread user3 = new UserThread(counter, "Charlie", 2);
+
+        user1.start();
+        user2.start();
+        user3.start();
+    }
+}
+
+class TicketCounter {
+    int availableSeats = 5;
+
+    // Synchronized method to prevent race conditions
+    public synchronized void bookTicket(String userName, int seatsRequested) {
+        System.out.println(userName + " is trying to book " + seatsRequested + " seat(s)...");
+
+        try {
+            Thread.sleep(1000); // Simulate delay
+        } catch (InterruptedException e) {
+            System.out.println("Booking interrupted for " + userName);
+        }
+
+        if (seatsRequested <= availableSeats) {
+            availableSeats -= seatsRequested;
+            System.out.println(userName + " successfully booked " + seatsRequested + " seat(s).");
+        } else {
+            System.out.println("Sorry " + userName + ", not enough seats available.");
+        }
+
+        System.out.println("Seats remaining: " + availableSeats);
+        System.out.println("--------------------------------");
+    }
+}
+
+class UserThread extends Thread {
+    TicketCounter counter;
+    String userName;
+    int seatsToBook;
+
+    public UserThread(TicketCounter counter, String userName, int seatsToBook) {
+        this.counter = counter;
+        this.userName = userName;
+        this.seatsToBook = seatsToBook;
+    }
+
+    public void run() {
+        counter.bookTicket(userName, seatsToBook);
+    }
+}
