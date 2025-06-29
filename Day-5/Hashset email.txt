@@ -1,0 +1,20 @@
+import java.util.*;
+
+public class UniqueEmails {
+    public static void main(String[] args) {
+        HashSet<String> emails = new HashSet<>();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter email IDs (type 'done' to stop):");
+        while (true) {
+            String email = sc.nextLine();
+            if (email.equalsIgnoreCase("done")) break;
+            emails.add(email);
+        }
+
+        System.out.println("\nUnique Email IDs:");
+        for (String e : emails) {
+            System.out.println(e);
+        }
+    }
+}

@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class StudentList {
+    public static void main(String[] args) {
+        // Create an ArrayList of student names
+        ArrayList<String> students = new ArrayList<>();
+
+        // Add student names to the list
+        students.add("Alice");
+        students.add("Bob");
+        students.add("Charlie");
+        students.add("David");
+
+        // Create an iterator for the list
+        Iterator<String> iterator = students.iterator();
+
+        // Display student names using the iterator
+        System.out.println("Student List:");
+        while (iterator.hasNext()) {
+            String name = iterator.next();
+            System.out.println(name);
+        }
+    }
+}

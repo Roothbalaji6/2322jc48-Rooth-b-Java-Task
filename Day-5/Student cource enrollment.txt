@@ -1,0 +1,78 @@
+import java.util.*;
+
+public class StudentCourseEnrollmentSystem {
+    private ArrayList<String> students;
+    private HashMap<String, ArrayList<String>> enrollment;
+
+    public StudentCourseEnrollmentSystem() {
+        students = new ArrayList<>();
+        enrollment = new HashMap<>();
+    }
+
+    // Add a new student
+    public void addStudent(String studentName) {
+        if (!students.contains(studentName)) {
+            students.add(studentName);
+            enrollment.put(studentName, new ArrayList<>());
+            System.out.println("Student added: " + studentName);
+        } else {
+            System.out.println("Student already exists.");
+        }
+    }
+
+    // Remove a student
+    public void removeStudent(String studentName) {
+        if (students.contains(studentName)) {
+            students.remove(studentName);
+            enrollment.remove(studentName);
+            System.out.println("Student removed: " + studentName);
+        } else {
+            System.out.println("Student not found.");
+        }
+    }
+
+    // Enroll a student in a course
+    public void enrollCourse(String studentName, String courseName) {
+        if (students.contains(studentName)) {
+            ArrayList<String> courses = enrollment.get(studentName);
+            if (!courses.contains(courseName)) {
+                courses.add(courseName);
+                System.out.println("Course added: " + courseName + " for student " + studentName);
+            } else {
+                System.out.println("Student already enrolled in this course.");
+            }
+        } else {
+            System.out.println("Student not found.");
+        }
+    }
+
+    // Display all students and their courses
+    public void displayAll() {
+        Iterator<String> studentIterator = students.iterator();
+        while (studentIterator.hasNext()) {
+            String student = studentIterator.next();
+            System.out.println("Student: " + student);
+            ArrayList<String> courses = enrollment.get(student);
+            Iterator<String> courseIterator = courses.iterator();
+            while (courseIterator.hasNext()) {
+                System.out.println("  Course: " + courseIterator.next());
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        StudentCourseEnrollmentSystem system = new StudentCourseEnrollmentSystem();
+
+        system.addStudent("Alice");
+        system.addStudent("Bob");
+
+        system.enrollCourse("Alice", "Math");
+        system.enrollCourse("Alice", "Science");
+        system.enrollCourse("Bob", "History");
+
+        system.displayAll();
+
+        system.removeStudent("Alice");
+        system.displayAll();
+    }
+}

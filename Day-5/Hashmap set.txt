@@ -1,0 +1,33 @@
+import java.util.*;
+
+public class OneStudent {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        HashMap<String, Integer> marks = new HashMap<>();
+
+        System.out.println("Enter subject and marks (type 'done' to stop):");
+
+        while (true) {
+            System.out.print("Subject: ");
+            String sub = sc.nextLine();
+            if (sub.equalsIgnoreCase("done")) break;
+
+            System.out.print("Marks: ");
+            int m = sc.nextInt();
+            sc.nextLine(); // clear newline
+
+            marks.put(sub, m);
+        }
+
+        int total = 0;
+        for (int m : marks.values()) total += m;
+
+        double avg = marks.size() > 0 ? (double) total / marks.size() : 0;
+
+        System.out.println("\nMarks:");
+        for (String s : marks.keySet())
+            System.out.println(s + ": " + marks.get(s));
+
+        System.out.println("Average: " + avg);
+    }
+}
