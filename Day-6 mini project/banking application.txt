@@ -1,0 +1,63 @@
+public class BankingApp {
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount(1000); // Starting balance
+
+        // Create user threads
+        Thread user1 = new UserThread(account, "Alan", 600);
+        Thread user2 = new UserThread(account, "Helan", 400);
+        Thread user3 = new UserThread(account, "Christ", 300);
+
+        // Start threads
+        user1.start();
+        user2.start();
+        user3.start();
+    }
+}
+
+class BankAccount {
+    private int balance;
+
+    public BankAccount(int initialBalance) {
+        this.balance = initialBalance;
+    }
+
+    // Synchronized method to prevent race conditions
+    public synchronized void withdraw(int amount) {
+        String threadName = Thread.currentThread().getName();
+        System.out.println(threadName + " is attempting to withdraw ₹" + amount);
+
+        try {
+            Thread.sleep(1000); // Simulate transaction delay
+        } catch (InterruptedException e) {
+            System.out.println(threadName + " was interrupted.");
+        }
+
+        if (amount <= balance) {
+            balance -= amount;
+            System.out.println(threadName + " successfully withdrew :" + amount);
+        } else {
+            System.out.println(threadName + " failed to withdraw :" + amount + " (Insufficient balance)");
+        }
+
+        System.out.println("Balance after " + threadName + "'s transaction: :" + balance);
+        System.out.println("--------------------------------------------------");
+    }
+}
+
+class UserThread extends Thread {
+    private BankAccount account;
+    private int amount;
+
+    public UserThread(BankAccount account, String userName, int amount) {
+        super(userName); // Set thread name
+        this.account = account;
+        this.amount = amount;
+    }
+
+    public void run() {
+        account.withdraw(amount);
+    }
+}
+
+           
+      
