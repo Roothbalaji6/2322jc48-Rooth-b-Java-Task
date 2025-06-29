@@ -42,7 +42,7 @@ break;
 
 case 3:
 
-ans=num1+num2;
+ans=num1*num2;
 
 System.out.println("Answer."+ans);
 
@@ -50,7 +50,7 @@ break;
 
 case 4:
 
-ans=num1+num2;
+ans=num1/num2;
 System.out.println("Answer"+ans);
 break;
 default:
