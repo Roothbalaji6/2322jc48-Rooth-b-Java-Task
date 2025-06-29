@@ -34,21 +34,7 @@ else if(average >=60) {
 System.out.println("grade C");
 }
 
-//Print 
-System.out.println("grade A");
-
- if(average >=80) {
-
-System.out.println("gardeB");
-
-}else if(average >=60){
-
-}
-
-System.out.println("grade C");
-
-//print
-
+//output
 System.out.println("Name: "+name);
 
 System.out.println("Mark1:"+mark1);
